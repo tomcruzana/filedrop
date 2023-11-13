@@ -73,6 +73,7 @@ export class ImageUploadComponent implements OnInit {
             if (err.error && err.error.message) {
               this.message = err.error.message;
             } else {
+              // fall back error
               this.message = 'Could not upload the image!';
             }
 
@@ -83,5 +84,47 @@ export class ImageUploadComponent implements OnInit {
 
       this.selectedFiles = undefined;
     }
+  }
+
+  deleteAll(): void {
+    this.uploadService.deleteAllFiles().subscribe({
+      next: (event: any) => {
+        if (event instanceof HttpResponse) {
+          alert(event.body.message);
+        }
+        // Update the UI by fetching the list of files again
+        this.imageInfos = this.uploadService.getFiles();
+      },
+      error: (err: any) => {
+        console.log(err);
+        if (err.error && err.error.message) {
+          alert(err.error.message);
+        } else {
+          // fall back error
+          alert('Could not delete all images!');
+        }
+      },
+    });
+  }
+
+  delete(fileName: string): void {
+    this.uploadService.deleteFile(fileName).subscribe({
+      next: (event: any) => {
+        if (event instanceof HttpResponse) {
+          alert(event.body.message);
+        }
+        // Update the UI by fetching the list of files again
+        this.imageInfos = this.uploadService.getFiles();
+      },
+      error: (err: any) => {
+        console.log(err);
+        if (err.error && err.error.message) {
+          alert(err.error.message);
+        } else {
+          // fall back error
+          alert('Could not delete the image!');
+        }
+      },
+    });
   }
 }

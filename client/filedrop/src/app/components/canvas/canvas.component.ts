@@ -24,9 +24,16 @@ export class CanvasComponent implements OnInit {
       const context = canvas.getContext('2d');
 
       if (context) {
-        context.drawImage(img, 110, 110, 51, 51);
+        canvas.width = 1024;
+        canvas.height = 768;
+
+        context.imageSmoothingEnabled = false;
+        context.drawImage(img, 0, 0, img.width, img.height);
         // context.drawImage(img, 0, 0, img.width, img.height, // source size
         //              0, 0, canvas.width, newHeight);  // destination size
+
+        // @TODO - dynamically compute artwork coords based on the print selection area value
+        // @TODO - add bg garment
       }
     };
   }

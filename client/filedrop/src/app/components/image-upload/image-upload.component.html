@@ -37,6 +37,18 @@
   {{ message }}
 </div>
 
+<select class="form-select" aria-label="Default select example">
+  <option value="topleft" selected>topleft</option>
+  <option value="topcenter">top center</option>
+  <option value="topright">top right</option>
+  <option value="midleft">mid left</option>
+  <option value="midcenter">mid center</option>
+  <option value="midright">mid right</option>
+  <option value="bottomleft">bottom left</option>
+  <option value="bottomcenter">bottom center</option>
+  <option value="bottomright">bottom right</option>
+</select>
+
 <div class="card mt-3">
   <div class="card-header">List of Images</div>
   <ul class="list-group list-group-flush">
@@ -45,6 +57,8 @@
         <a href="{{ image.url }}">{{ image.name }}</a>
       </p>
       <img src="{{ image.url }}" alt="{{ image.name }}" height="80px" />
+      <button (click)="delete(image.name)">delete</button>
     </li>
   </ul>
+  <button (click)="deleteAll()">delete all</button>
 </div>
