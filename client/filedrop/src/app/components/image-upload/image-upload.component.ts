@@ -82,6 +82,7 @@ export class ImageUploadComponent implements OnInit {
         });
       }
 
+      this.preview = '';
       this.selectedFiles = undefined;
     }
   }
