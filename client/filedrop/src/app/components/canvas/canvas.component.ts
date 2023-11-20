@@ -29,10 +29,13 @@ export class CanvasComponent implements OnInit {
 
         context.imageSmoothingEnabled = false;
         context.drawImage(img, 0, 0, img.width, img.height);
+
+        context.strokeStyle = 'black';
+        context.lineWidth = 1;
+        context.strokeRect(0, 0, img.width, img.height);
         // context.drawImage(img, 0, 0, img.width, img.height, // source size
         //              0, 0, canvas.width, newHeight);  // destination size
 
-        // @TODO - dynamically compute artwork coords based on the print selection area value
         // @TODO - add bg garment
       }
     };
